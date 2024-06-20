@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
+            <h1>Taskmgr</h1>
+            <div class="menu-spacer"></div>
+        </nav>
+    </header>
+    <main id="mainContent">
+        <div class="task-list"></div>
+    </main>
+    <div class="bottom-menu-overlay" id="bottomMenuOverlay" onclick="closeMenu()"></div>
+    <div class="bottom-menu" id="bottomMenu">
+        <div class="bottom-menu-content">
+            <button onclick="addNewTask()">+ Nueva tarea</button>
+            <button onclick="configureSettings()">&#9881; Configurar</button>
+            <button onclick="closeMenu()">Cerrar</button>
+        </div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="spanClose">&times;</span>
+            <h2>Nueva Tarea</h2>
+            <form id="taskForm">
+                <label for="taskTitle">Título:</label>
+                <input type="text" id="taskTitle" name="taskTitle" required><br><br>
+
+                <label for="taskDetail">Detalle:</label>
+                <textarea id="taskDetail" name="taskDetail" rows="4"></textarea><br><br>
+
+                <label for="taskStatus">Estado:</label>
+                <select id="taskStatus" name="taskStatus" required>
+                    <option value="nueva">Nueva</option>
+                    <option value="enCurso">En Curso</option>
+                    <option value="pendiente">Pendiente</option>
+                    <option value="finalizada">Finalizada</option>
+                </select><br><br>
+
+                <button type="submit">Guardar</button>
+                <button type="button" onclick="closeModal()">Cerrar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <h2>Editar Tarea</h2>
+            <form id="editTaskForm">
+                <label for="editTaskTitle">Título:</label>
+                <input type="text" id="editTaskTitle" name="editTaskTitle" required><br><br>
+
+                <label for="editTaskDetail">Detalle:</label>
+                <textarea id="editTaskDetail" name="editTaskDetail" rows="4" required></textarea><br><br>
+
+                <label for="editTaskStatus">Estado:</label>
+                <select id="editTaskStatus" name="editTaskStatus" required>
+                    <option value="nueva">Nueva</option>
+                    <option value="enCurso">En Curso</option>
+                    <option value="pendiente">Pendiente</option>
+                    <option value="finalizada">Finalizada</option>
+                </select><br><br>
+
+                <button type="submit">Guardar</button>
+                <button type="button" onclick="closeEditModal()">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('settingsModal').style.display = 'none'">&times;</span>
+            <h2>Configuración de Text-to-Speech</h2>
+            <form id="settingsForm">
+                <label for="voiceSelect">Voz:</label>
+                <select id="voiceSelect"></select><br><br>
+
+                <label for="rateSelect">Velocidad:</label>
+                <select id="rateSelect">
+                    <option value="0.5">0.5x</option>
+                    <option value="1">1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select><br><br>
+
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</body>
+
+</html>
